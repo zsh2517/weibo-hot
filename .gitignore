@@ -1,4 +1,6 @@
 20*/
-# *.zip
+*.zip
+config.py
 *.svg
 hot_rank.py
+_*
