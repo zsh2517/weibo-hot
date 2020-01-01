@@ -6,11 +6,13 @@ import math
 from datetime import datetime
 import json
 import pygal
-bgn="2020-01-01-07-00-00".split("-")
-end="2020-01-01-10-30-00".split("-")
+import config
+bgn=config.bgntime.split("-")
+end=config.endtime.split("-")
 keys=[]
+# count=0
 xy_chart = pygal.XY(show_dots=False)
-keyword="新年"
+keyword=config.keyword
 xy_chart.title = "微博关键词 “%s” 热度分析"%(keyword)
 chart={}
 def add(tm,rank,key):
@@ -31,6 +33,7 @@ for index in range(len(bgn)):
     bgn[index]=int(bgn[index])
     end[index]=int(end[index])
 def tonext(tme,level):
+    # count+=1
     tme[level]+=1
     if(tme[5]==60):
         tme[5]=0
@@ -42,7 +45,7 @@ def tonext(tme,level):
         tme[3]=0
         tme[2]+=1
     if(tme[2]==32):
-        tme[2]=0
+        tme[2]=1
         tme[1]+=1
     if(tme[1]==13):
         tme[1]=1
